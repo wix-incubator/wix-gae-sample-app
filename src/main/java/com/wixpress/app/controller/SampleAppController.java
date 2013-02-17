@@ -95,13 +95,13 @@ public class SampleAppController {
                                    @RequestParam(required = false) String title) {
         try {
             UUID instanceIduuid = UUID.fromString(instanceId);
-            AppSettings appSettings = sampleAppDao.getAppInstance(instanceIduuid);
+            AppSettings appSettings = sampleAppDao.getAppSettings(instanceIduuid);
 
             AppSettings newAppSettings = new AppSettings(
                     (title == null)?appSettings.getTitle():title,
                     (color == null)?appSettings.getColor():color);
 
-            sampleAppDao.update(newAppSettings, instanceIduuid);
+            sampleAppDao.updateAppSettings(newAppSettings, instanceIduuid);
             return AjaxResult.ok();
         }
         catch (Exception e) {
@@ -245,11 +245,11 @@ public class SampleAppController {
      * @return loaded or new app settings
      */
     private AppSettings loadOrCreateAppInstance(WixSignedInstance wixSignedInstance) {
-        AppSettings appSettings = sampleAppDao.getAppInstance(wixSignedInstance.getInstanceId());
+        AppSettings appSettings = sampleAppDao.getAppSettings(wixSignedInstance.getInstanceId());
 
         if(appSettings == null) {
             appSettings = new AppSettings();
-            sampleAppDao.addAppInstance(appSettings, wixSignedInstance.getInstanceId());
+            sampleAppDao.saveAppSettings(appSettings, wixSignedInstance.getInstanceId());
         }
         return appSettings;
     }
