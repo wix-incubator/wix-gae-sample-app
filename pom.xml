@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <!-- todo change the app groupId and artifactId -->
-    <groupId>SampleAppGAE</groupId>
-    <artifactId>SampleAppGAE</artifactId>
+    <groupId>GROUP_ID</groupId>
+    <artifactId>ARTIFACT_ID</artifactId>
     <packaging>war</packaging>
     <version>1.0.0-BUILD-SNAPSHOT</version>
 
     <properties>
         <!-- todo change to point at your app-engine SDK local installation -->
-        <gae.home>c:\work\appengine-java-sdk-1.7.4\</gae.home>
+        <gae.home>APP_ENGINE_HOME</gae.home>
         <!-- todo change to your app-engine application name (as you registered the application with app-engine) -->
         <gaeApplicationName>GAE_APPLICATION_NAME</gaeApplicationName>
         <gaePluginVersion>0.9.4</gaePluginVersion>
