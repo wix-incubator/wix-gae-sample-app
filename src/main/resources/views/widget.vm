@@ -4,110 +4,62 @@
     <title>$appSettings.getTitle() Widget</title>
     <link href="http://current.bootstrapcdn.com/bootstrap-v204/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://current.bootstrapcdn.com/bootstrap-v204/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://sslstatic.wix.com/services/js-sdk/1.16.4/js/Wix.js"></script>
 </head>
 
 <body>
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="hero-unit" style="background-color:$appSettings.getColor();">
-            <h2>$appSettings.getTitle()</h2>
-
-            <h3>Widget</h3>
+        <div class="hero-unit" id="title">
         </div>
     </div>
 
 ##    instance-details
 
     <div class="container-fluid thumbnail"
-         style="margin-bottom:20px; padding:20px; box-shadow:#ccc 0 0 15px $appSettings.getColor()">
+         style="margin-bottom:20px; padding:20px; box-shadow:#ccc 0 0 15px">
         <div class="span4">
             <h6>Instance Parameters</h6>
             <hr/>
             <div class="row-fluid">
                 <div class="pull-left">instanceId</div>
-                <div class="pull-right">$wixSignedInstance.getInstanceId()</div>
+                <div class="pull-right" id="instanceId"></div>
             </div>
             <div class="row-fluid">
                 <div class="pull-left">signDate</div>
-                <div class="pull-right">$wixSignedInstance.getSignDate()</div>
+                <div class="pull-right" id="signDate"></div>
             </div>
             <div class="row-fluid">
                 <div class="pull-left">uid</div>
-                <div class="pull-right">$wixSignedInstance.getUid()</div>
+                <div class="pull-right" id="uid"></div>
             </div>
             <div class="row-fluid">
                 <div class="pull-left">permissions</div>
-                <div class="pull-right">$wixSignedInstance.getPermissions()</div>
+                <div class="pull-right" id="permissions"></div>
             </div>
         </div>
-    </div>
-
-##    session-details
-
-    <div class="container-fluid thumbnail"
-         style="margin-bottom:20px; padding:20px; box-shadow:#ccc 0 0 15px $appSettings.getColor()">
-        <div class="span4" id="smContainer">
-            <h6>Site Memeber Parameters</h6>
-            <hr/>
-            <div class="row-fluid">
-                <div class="pull-left">isLoggedIn</div>
-                <div class="pull-right" id="isLoggedIn"></div>
-            </div>
-            <div class="row-fluid">
-                <div class="pull-left">collectionId</div>
-                <div class="pull-right" id="collectionId"></div>
-            </div>
-            <div class="row-fluid">
-                <div class="pull-left">email</div>
-                <div class="pull-right" id="email"></div>
-            </div>
-            <div class="row-fluid">
-                <div class="pull-left">id</div>
-                <div class="pull-right" id="memberId"></div>
-            </div>
-            <div class="row-fluid">
-                <div class="pull-left">name</div>
-                <div class="pull-right" id="userName"></div>
-            </div>
-            <div class="row-fluid">
-                <div class="pull-left">owner</div>
-                <div class="pull-right" id="owner"></div>
-            </div>
-            <div class="row-fluid">
-                <div class="pull-left">status</div>
-                <div class="pull-right" id="status"></div>
-            </div>
-        </div>
-        <button class="btn pull-right" id="login">Login</button>
     </div>
 
     <script type="text/javascript">
-        $("#login").click(function () {
-            Wix.requestLogin(function (response) {
-            });
-        });
 
-        $(document).ready(function () {
-            Wix.currentMember(function (response) {
-                var smContainer = $("#smContainer");
+        var settings = ${settings};
+        $(document).ready(function() {
+            init();
+        })
 
-                if (!response || response == {} || response == undefined ||
-                        response.code == "API_NOT_LOADED" || response.code == "TOKEN_IS_INVALID") {
-                    smContainer.children().hide();
-                    Wix.reportHeightChange(500);
-                } else {
-                    $("#collectionId").text(response.collectionId);
-                    $("#email").text(response.email);
-                    $("#memberId").text(response.id);
-                    $("#userName").text(response.name);
-                    $("#owner").text(response.owner);
-                    $("#status").text(response.status);
-                    Wix.reportHeightChange(900);
-                }
-            });
-        });
+        function init() {
+            $('#instanceId').html(Wix.Utils.getInstanceId());
+            $('#uid').html(Wix.Utils.getUid());
+            $('#permissions').html(Wix.Utils.getPermissions());
+            $('#signDate').html(Wix.Utils.getSignDate());
+
+            settings.styling.color = settings.styling.color || "LightGreen";
+            settings.styling.title = settings.styling.title || "My title";
+            $('#title').html('<h2>'+settings.styling.title+'</h2>');
+            $('#title').css('background-color', settings.styling.color);
+        }
+
     </script>
 
 </div>

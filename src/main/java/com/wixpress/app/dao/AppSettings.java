@@ -1,6 +1,10 @@
 package com.wixpress.app.dao;
 
+import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.annotate.JsonTypeName;
+import org.codehaus.jackson.map.ObjectMapper;
+
+import javax.annotation.Nullable;
 
 /**
  * Created by : doron
@@ -10,31 +14,24 @@ import org.codehaus.jackson.annotate.JsonTypeName;
 @JsonTypeName("AppSettings")
 public class AppSettings {
 
-    private String title = "My App";
-    private String color = "LightGreen";
+    private @Nullable JsonNode styling;
 
     public AppSettings() {}
 
-    public AppSettings(String title, String color) {
-
-        this.title = title;
-        this.color = color;
+    public AppSettings(ObjectMapper objectMapper) {
+        styling = objectMapper.createObjectNode();
     }
 
-    public String getTitle() {
-        return title;
+    public <T> T nvl(T value, T fallback) {
+        return (value != null)?value:fallback;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @Nullable
+    public JsonNode getStyling() {
+        return styling;
     }
 
-    public String getColor() {
-        return color;
+    public void setStyling(@Nullable JsonNode styling) {
+        this.styling = styling;
     }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
 }
