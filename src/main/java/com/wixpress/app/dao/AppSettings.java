@@ -14,6 +14,7 @@ import javax.annotation.Nullable;
 @JsonTypeName("AppSettings")
 public class AppSettings {
 
+    private @Nullable String title;
     private @Nullable JsonNode styling;
 
     public AppSettings() {}
@@ -33,5 +34,14 @@ public class AppSettings {
 
     public void setStyling(@Nullable JsonNode styling) {
         this.styling = styling;
+    }
+
+    @Nullable
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(@Nullable String title) {
+        this.title = title;
     }
 }

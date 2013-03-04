@@ -55,8 +55,8 @@
             $('#signDate').html(Wix.Utils.getSignDate());
 
             settings.styling.color = settings.styling.color || "LightGreen";
-            settings.styling.title = settings.styling.title || "My title";
-            $('#title').html('<h2>'+settings.styling.title+'</h2>');
+            settings.title = settings.title || "My title";
+            $('#title').html('<h2>'+settings.title+'</h2>');
             $('#title').css('background-color', settings.styling.color);
         }
 

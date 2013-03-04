@@ -86,7 +86,7 @@
 
     function updateApp(color, title) {
         settings.styling.color = color;
-        settings.styling.title = title;
+        settings.title = title;
 
         var compId = Wix.Utils.getOrigCompId();
 
@@ -128,8 +128,8 @@
         $('#signDate').html(Wix.Utils.getSignDate());
 
         settings.styling.color = settings.styling.color || "LightGreen";
-        settings.styling.title = settings.styling.title || "My title";
-        $('#mainTitle').html('<h2>'+settings.styling.title+'</h2>');
+        settings.title = settings.title || "My title";
+        $('#mainTitle').html('<h2>'+settings.title+'</h2>');
         setColorCheckedValue(settings.styling.color);
         return $('.btn-group button.active').text();
     }
