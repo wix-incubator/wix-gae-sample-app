@@ -130,6 +130,7 @@
         settings.styling.color = settings.styling.color || "LightGreen";
         settings.title = settings.title || "My title";
         $('#mainTitle').html('<h2>'+settings.title+'</h2>');
+        $('#title').val(settings.title);
         setColorCheckedValue(settings.styling.color);
         return $('.btn-group button.active').text();
     }
