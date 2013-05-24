@@ -53,7 +53,7 @@ public class SampleAppController {
     @RequestMapping(value = "/widget", method = RequestMethod.GET)
     public String widget(Model model,
                          @RequestParam String instance,
-                         @RequestParam(value = "section-url") String sectionUrl,
+                         @RequestParam(value = "section-url", required = false) String sectionUrl,
                          @RequestParam(required = false) String target,
                          @RequestParam Integer width,
                          @RequestParam String compId,
